@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }} — PacketGo 배포 이력</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f6f3;--sur:#fff;--bdr:#e4e2dc;--bdr2:#c8c5bc;--tx:#1a1916;--tx2:#5a5750;--tx3:#9c9890;--acc:#1a1916;--tag:#eeecea;--hf:#b85c00;--hfbg:#fff4eb;--st:#1a6b3c;--stbg:#edf7f1;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans KR',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--tx);line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--bdr);background:var(--sur);padding:14px 0;position:sticky;top:0;z-index:100}
+.hi{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.lm{width:28px;height:28px;background:var(--acc);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.lm svg{width:16px;height:16px;fill:white}
+.ln{font-size:.85rem;font-weight:600}.ls{font-size:.75rem;color:var(--tx3);margin-top:1px}
+.back{font-size:.78rem;color:var(--tx2);text-decoration:none;display:flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid var(--bdr);border-radius:6px;background:var(--bg)}
+.back:hover{border-color:var(--bdr2);color:var(--tx)}
+.hero{padding:36px 0 28px;border-bottom:1px solid var(--bdr);margin-bottom:32px}
+.hv{font-family:var(--mono);font-size:1.45rem;font-weight:500;margin-bottom:8px}
+.badges{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.badge{font-size:.68rem;font-weight:600;padding:2px 9px;border-radius:99px}
+.bs{background:var(--stbg);color:var(--st)}
+.bh{background:var(--hfbg);color:var(--hf)}
+.bl{background:#e8f0fe;color:#1a4fc4}
+.meta{display:flex;gap:20px;flex-wrap:wrap;font-size:.8rem;color:var(--tx2);margin-bottom:14px}
+.ml{color:var(--tx3);margin-right:4px}
+.ver-table{background:var(--sur);border:1px solid var(--bdr);border-radius:8px;overflow:hidden;margin-top:14px}
+.ver-table table{width:100%;border-collapse:collapse;font-size:.8rem}
+.ver-table th{text-align:left;padding:7px 14px;font-size:.7rem;color:var(--tx3);background:var(--tag);font-weight:600;letter-spacing:.04em}
+.ver-table td{padding:7px 14px;border-top:1px solid var(--bdr);color:var(--tx2);font-family:var(--mono);font-size:.78rem}
+.ver-table td:first-child{color:var(--tx);font-weight:500}
+.note-box{background:#fffbe6;border-left:3px solid #d4a800;border-radius:0 6px 6px 0;padding:10px 14px;font-size:.82rem;color:#7a5c00;margin-top:12px}
+.content{margin-bottom:48px}
+.content h2{font-size:1rem;font-weight:600;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.content h3{font-size:.88rem;font-weight:600;margin:18px 0 8px;color:var(--tx2)}
+.content p{font-size:.86rem;color:var(--tx2);margin-bottom:10px;line-height:1.75}
+.content ul,.content ol{padding-left:18px;margin-bottom:10px}
+.content li{font-size:.86rem;color:var(--tx2);margin-bottom:4px;line-height:1.65}
+.content a{color:var(--tx);text-underline-offset:2px}
+.content code{font-family:var(--mono);font-size:.8rem;background:var(--tag);padding:1px 6px;border-radius:4px}
+.content pre{background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:14px;overflow-x:auto;margin-bottom:14px}
+.content pre code{background:none;padding:0}
+.content table{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:14px}
+.content th{text-align:left;padding:7px 12px;font-size:.72rem;color:var(--tx3);border-bottom:1px solid var(--bdr);font-weight:600}
+.content td{padding:8px 12px;border-bottom:1px solid var(--bdr);color:var(--tx2)}
+.content blockquote{border-left:3px solid var(--bdr2);padding:8px 14px;color:var(--tx3);font-size:.84rem;margin-bottom:12px}
+footer{padding:18px 0;border-top:1px solid var(--bdr);font-size:.75rem;color:var(--tx3);margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hi">
+    <a class="logo" href="{{ site.baseurl }}/">
+      <div class="lm"><svg viewBox="0 0 16 16"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z"/></svg></div>
+      <div><div class="ln">PacketGo</div><div class="ls">배포 이력</div></div>
+    </a>
+    <a class="back" href="{{ site.baseurl }}/">← 목록으로</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hv">{{ page.title }}</div>
+    <div class="badges">
+      {% if page.type == 'stable' %}<span class="badge bs">정규</span>{% endif %}
+      {% if page.type == 'hotfix' %}<span class="badge bh">Hotfix</span>{% endif %}
+      {% if page.latest %}<span class="badge bl">최신</span>{% endif %}
+    </div>
+    <div class="meta">
+      <span><span class="ml">출시일</span>{{ page.date | date: "%Y.%m.%d" }}</span>
+      {% if page.os %}<span><span class="ml">배포 대상</span>{{ page.os | join: " / " }}</span>{% endif %}
+    </div>
+    {% if page.summary %}<p style="font-size:.85rem;color:var(--tx2);">{{ page.summary }}</p>{% endif %}
+    {% if page.note %}<div class="note-box">⚠ {{ page.note }}</div>{% endif %}
+    {% if page.versions %}
+    <div class="ver-table">
+      <table>
+        <thead><tr><th>구성 요소</th><th>버전</th></tr></thead>
+        <tbody>
+          {% for v in page.versions %}
+          <tr><td>{{ v[0] }}</td><td>{{ v[1] }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="content">
+    {{ content }}
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <span>PRIBIT Technology — 품질관리팀</span>
+    <span>{{ page.date | date: "%Y.%m.%d" }} 릴리즈</span>
+  </footer>
+</div>
+</body>
+</html>
